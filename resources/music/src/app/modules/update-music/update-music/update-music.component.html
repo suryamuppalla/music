@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-lg-5 offset-lg-3">
+
+    <mat-card>
+
+      <a mat-button color="accent" routerLink="/music">Back to My Music</a>
+
+
+      <div class="d-block mt-0" *ngIf="isLoading">
+        <mat-spinner color="accent" [diameter]="30"></mat-spinner>
+      </div>
+
+      <h2 class="mt-4">Update Music Details</h2>
+      <form class="example-form" [formGroup]="form" (ngSubmit)="uploadMusicFile()">
+
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" placeholder="Title" formControlName="title">
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" placeholder="Description" formControlName="description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Author</label>
+          <input type="text" class="form-control" placeholder="Author" formControlName="author">
+        </div>
+
+        <div class="form-group">
+          <label>Music File</label>
+          <input type="file" class="form-control" (change)="fileUpload($event)">
+
+          <div class="d-flex justify-content-start align-items-start mt-2">
+            <audio controls class="" *ngIf="music?.file">
+              <source [src]="baseUrl+music?.file" type="audio/ogg">
+              <source [src]="baseUrl+music?.file" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rating">Rating</label>
+          <input type="number" id="rating" placeholder="Rating" formControlName="rating" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="language">Language</label>
+          <input type="text" id="language" placeholder="Language" formControlName="language" class="form-control">
+        </div>
+
+        <div class="d-flex justify-content-start align-items-start mt-2">
+          <button [disabled]="form?.invalid" class="btn btn-primary" type="submit">Submit</button>
+
+          <button class="btn btn-danger" type="button" style="margin-left: 20px;" (click)="confirmation()">
+            Delete
+          </button>
+        </div>
+      </form>
+    </mat-card>
+
+  </div>
+</div>

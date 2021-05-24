@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="mb-0">My Music List</h2>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+
+    <div class="form-group mt-3 mb-3">
+      <input placeholder="Search by Music titles" [formControl]="search" class="form-control">
+    </div>
+
+
+    <div class="d-flex justify-content-center align-items-center mt-0" *ngIf="isLoading">
+      <mat-spinner color="accent" [diameter]="2" strokeWidth="10"></mat-spinner>
+    </div>
+  </div>
+
+  <div class="col-lg-2 offset-lg-6">
+    <a mat-raised-button color="accent" routerLink="/add-music" class="example-icon favorite-icon"
+       aria-label="Example icon-button with heart icon">
+      Add New Music
+    </a>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-4" *ngFor="let item of books">
+    <mat-card class="example-card mb-3">
+      <mat-card-header>
+        <mat-card-title [title]="item?.title">{{ item.title?.slice(0, 30) }}...</mat-card-title>
+      </mat-card-header>
+      <div class="d-flex justify-content-center align-items-center mb-3 mt-2">
+        <audio controls class="">
+          <source [src]="baseUrl+item.file" type="audio/ogg">
+          <source [src]="baseUrl+item.file" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <mat-card-actions>
+        <a routerLink="/music-details/{{ item.id }}" mat-button color="accent">View Details</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
