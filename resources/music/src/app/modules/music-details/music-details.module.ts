@@ -5,6 +5,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import {RouterModule} from "@angular/router";
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MatDialogModule,
+    MatSnackBarModule
   ]
 })
 export class MusicDetailsModule {

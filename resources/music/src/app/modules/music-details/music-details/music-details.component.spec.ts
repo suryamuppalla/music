@@ -1,16 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MusicDetailsComponent } from './music-details.component';
+import {MusicDetailsComponent} from './music-details.component';
+import {HttpClientModule} from "@angular/common/http";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {RouterModule} from "@angular/router";
 
-describe('BookDetailsComponent', () => {
+describe('MusicDetailsComponent', () => {
   let component: MusicDetailsComponent;
   let fixture: ComponentFixture<MusicDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MusicDetailsComponent ]
+      declarations: [MusicDetailsComponent],
+      imports: [
+        HttpClientModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        RouterModule.forRoot([])
+      ],
+      providers: [
+        {provide: MAT_DIALOG_DATA, useValue: {}},
+        {provide: MatDialogRef, useValue: {}}
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

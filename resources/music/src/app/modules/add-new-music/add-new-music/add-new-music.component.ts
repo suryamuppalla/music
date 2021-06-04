@@ -57,7 +57,7 @@ export class AddNewMusicComponent implements OnInit {
     }
   }
 
-  addNewMusic(file: string) {
+  addNewMusic(file: string): void {
     const data = this.form.value;
     data.file = file;
     this.httpClient.post(

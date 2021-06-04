@@ -4,5 +4,5 @@ export const BaseUrl = `http://localhost/2017766/music/public/`;
 
 export class Constants {
   static music = BaseUrl + `music`;
-  static musicFileUpload = BaseUrl + 'music/upload'
+  static musicFileUpload = BaseUrl + 'music/upload';
 }

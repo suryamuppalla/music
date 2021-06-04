@@ -84,11 +84,16 @@ class MusicController extends Controller
 
     public function deleteMusic($id)
     {
-        // logic to delete a Music record goes here
-        Music::findOrFail($id)->first()->delete();
-        return response()->json([
-            "message" => "Music Details Deleted Successfully"
-        ], 200);
+        if (Music::where('id', $id)->exists()) {
+            Music::where('id', $id)->first()->delete();
+            return response()->json([
+                "message" => "Music Details Deleted Successfully"
+            ], 200);
+        } else {
+            return response()->json([
+                "message" => "Music not found"
+            ], 404);
+        }
 
     }
 }

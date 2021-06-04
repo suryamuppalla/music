@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BaseUrl, Constants} from "../../../common/constants";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ConfirmDialogComponent} from "../../confirm-dialog/confirm-dialog/confirm-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-book-details',
@@ -15,6 +18,9 @@ export class MusicDetailsComponent implements OnInit {
 
   constructor(
     private httpClient: HttpClient,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.params.subscribe(params => {
@@ -32,5 +38,27 @@ export class MusicDetailsComponent implements OnInit {
           this.music = response[0];
         }
       });
+  }
+
+  confirmation(id: number) {
+    this.dialog.open(ConfirmDialogComponent, {
+      width: '450px',
+      data: {
+        title: `Are you sure you want to delete?`
+      }
+    }).afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.httpClient.delete(
+          `${Constants.music}/${id}`
+        ).subscribe((response: any) => {
+          this.snackBar.open(response.message, '', {
+            verticalPosition: 'top', duration: 4000
+          });
+          this.router.navigate(['/music']);
+        }, (error: any) => {
+          console.log(error);
+        });
+      }
+    })
   }
 }
