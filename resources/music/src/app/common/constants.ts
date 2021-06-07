@@ -1,4 +1,6 @@
-export const BaseUrl = `http://localhost/2017766/music/public/`;
+import {environment} from '../../environments/environment';
+
+export const BaseUrl = environment.appUrl;
 
 // const BaseUrl = `https://mi-linux.wlv.ac.uk/~2017781/personal-library/public/`;
 
