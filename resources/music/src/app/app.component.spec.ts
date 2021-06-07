@@ -32,4 +32,12 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('a.logo').textContent).toContain('My Music');
   });
+
+  it('should have Toolbar', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const bannerElement: HTMLElement = fixture.nativeElement;
+    // tslint:disable-next-line:no-non-null-assertion
+    const p = bannerElement.querySelector('#toolbar')!;
+    expect(p).toBeDefined();
+  });
 });

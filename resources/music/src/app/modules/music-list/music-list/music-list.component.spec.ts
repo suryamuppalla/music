@@ -7,7 +7,7 @@ import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 describe('MusicListComponent', () => {
@@ -40,5 +40,31 @@ describe('MusicListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have title Music list', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('#music').textContent).toContain('My Music List');
+  });
+  it('should have Search Input', () => {
+    const bannerElement: HTMLElement = fixture.nativeElement;
+    const p = bannerElement.querySelector('#search-input');
+    expect(p).toBeDefined();
+  });
+  it('should have Search Input', () => {
+    const bannerElement: HTMLElement = fixture.nativeElement;
+    // tslint:disable-next-line:no-non-null-assertion
+    const p = bannerElement.querySelector('#search-input')!;
+    expect(p.textContent).toBe('');
+  });
+  it('Loading is turned off default', () => {
+    expect(component.isLoading).toBeDefined();
+  });
+  it('Books list should be empty default', () => {
+    expect(component.books).toEqual([]);
+  });
+  it('Search control should be an instance of FormControl', () => {
+    expect(component.search).toBeInstanceOf(FormControl);
   });
 });
