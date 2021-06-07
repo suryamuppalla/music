@@ -10,5 +10,5 @@ class Music extends Model
 
     protected $table = 'music';
 
-    protected $fillable = ['title', 'description', 'file', 'author', 'language', 'rating'];
+    protected $fillable = ['title', 'description', 'file', 'rating', 'author', 'language', 'rating'];
 }
