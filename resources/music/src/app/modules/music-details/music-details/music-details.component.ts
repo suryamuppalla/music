@@ -40,7 +40,7 @@ export class MusicDetailsComponent implements OnInit {
       });
   }
 
-  confirmation(id: number) {
+  confirmation(id: number): void {
     this.dialog.open(ConfirmDialogComponent, {
       width: '450px',
       data: {
@@ -48,8 +48,9 @@ export class MusicDetailsComponent implements OnInit {
       }
     }).afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.httpClient.delete(
-          `${Constants.music}/${id}`
+        this.httpClient.post(
+          `${Constants.music}/delete/${id}`,
+          {}
         ).subscribe((response: any) => {
           this.snackBar.open(response.message, '', {
             verticalPosition: 'top', duration: 4000
