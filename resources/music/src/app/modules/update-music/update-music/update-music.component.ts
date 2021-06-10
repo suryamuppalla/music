@@ -89,15 +89,15 @@ export class UpdateMusicComponent implements OnInit {
             this.addNewMusic(this.music.file);
           }
         }
-      })
+      });
     }
   }
 
-  addNewMusic(file: string) {
+  public addNewMusic(file: string): void {
     const data = this.form.value;
     data.file = file;
-    this.httpClient.put(
-      `${Constants.music}/${this.music.id}`,
+    this.httpClient.post(
+      `${Constants.music}/update/${this.music.id}`,
       data
     ).subscribe((response: any) => {
       this.snackBar.open(response.message, '', {
@@ -109,7 +109,7 @@ export class UpdateMusicComponent implements OnInit {
     });
   }
 
-  confirmation() {
+  confirmation(): void {
     this.dialog.open(ConfirmDialogComponent, {
       width: '450px',
       data: {
@@ -117,8 +117,9 @@ export class UpdateMusicComponent implements OnInit {
       }
     }).afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.httpClient.delete(
-          `${Constants.music}/${this.music.id}`
+        this.httpClient.post(
+          `${Constants.music}/delete/${this.music.id}`,
+          {}
         ).subscribe((response: any) => {
           this.snackBar.open(response.message, '', {
             verticalPosition: 'top', duration: 4000

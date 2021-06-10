@@ -18,6 +18,6 @@ Route::get('/', function () {
 Route::get('music', 'MusicController@getAllMusic');
 Route::get('music/{id}', 'MusicController@getMusic');
 Route::post('music', 'MusicController@createMusic');
-Route::put('music/{id}', 'MusicController@updateMusic');
-Route::delete('music/{id}', 'MusicController@deleteMusic');
+Route::post('music/update/{id}', 'MusicController@updateMusic');
+Route::post('music/delete/{id}', 'MusicController@deleteMusic');
 Route::post('music/upload', 'MusicController@uploadMusicFile');
